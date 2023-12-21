@@ -1,0 +1,7 @@
+library(ggplot2)
+setwd("D:\\backup\\our_data\\RNA\\VQSR\\10\\gene_area\\expression_quantity\\integrate_locate\\all\\logMm")
+data <- read.csv("ENSDARG00000002523.work",sep="\t",header=FALSE)
+new_data=data.frame(logR=abs(log(data$V8/data$V9)),mRNA_position=factor(data$V3),fish_class=data$V2,label=factor(data$V24))
+t.test(new_data$label,new_data$logR)
+wilcox.test(new_data$label,new_data$logR)
+ggplot(new_data,aes(x=label,y=logR))+geom_point()

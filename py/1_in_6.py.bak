@@ -1,0 +1,22 @@
+import os,re
+import pandas as pd
+import numpy as np
+import gc
+os.chdir("/mnt/nas2/lcc/SNP2/")
+df1=pd.read_table("/mnt/nas2/lcc/SNP2/done/gD6-7-1.SNP_homozygosis",sep="\t",header=None)
+print("read finish")
+df1['pos']=df1[0].map(str)+"_"+df1[1].map(str)
+print("read finish")
+file= ['gD1-6.add_intermediate_fileaa','gD1-6.add_intermediate_fileab','gD1-6.add_intermediate_fileac','gD1-6.add_intermediate_filead','gD1-6.add_intermediate_fileae','gD1-6.add_intermediate_fileaf','gD1-6.add_intermediate_fileag']
+for index in range(len(file)):
+  df2=pd.read_table(file[index],sep="\t",header=None)
+  print("read finish")
+  df2['pos']=df2[0].map(str)+"_"+df2[1].map(str)
+  print("read finish")
+  x= pd.merge(df1,df2,on=['pos'],how = "inner")
+  y=x[x['3_x']!=x['2_y']]
+  name="/mnt/nas2/lcc/SNP2/done/"+"1_in_6_"+file[index]
+  y.to_csv(name, sep='\t', index=False,header=None)
+  del y,x,df2,name
+  gc.collect()
+  index = index + 1

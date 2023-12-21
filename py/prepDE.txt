@@ -1,0 +1,7 @@
+brain	./SRR1524238.gtf
+gills	./SRR1524239.gtf
+heart	./SRR1524240.gtf
+muscle	./SRR1524241.gtf
+liver	./SRR1524242.gtf
+kidney	./SRR1524243.gtf
+intestine	./SRR1524245.gtf
